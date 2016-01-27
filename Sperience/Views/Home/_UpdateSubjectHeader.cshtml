@@ -1,0 +1,168 @@
+﻿@{
+    var db = new SperienceEntities();
+}
+<table class="table">
+    <tr>
+        <td hidden>
+            <div hidden class="form-group">
+                <label for="StageId">Stage ID</label>
+                <select class="form-control" id="StageId">
+                    @foreach (var StageID in db.Stages)
+                    {
+                        <option>@StageID.Id</option>
+                    }
+                </select>
+            </div>
+
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="subjectTitle">Subject ID</label>
+                <input type="text" class="form-control" id="SubjectId">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="STypeId">
+                <label for="subjectTypeID">Subject Type ID</label>
+                <input type="text" class="form-control" id="SubjectTypeID">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="STitle">
+                <label for="subjectTitle">Subject Title:</label>
+                <input type="text" class="form-control" id="SubjectTitle">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SDescription">
+                <label for="SubjectDescription">Subject Description</label>
+                <input type="text" class="form-control" id="SubjectDescription">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group" id="SDate">
+                <label for="SubjectDate">Subject Date</label>
+                <input type="date" data-format="yyyy/dd/MM" class="form-control" id="SubjectDate">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SClossingDate">
+                <label for="subjectTypeID">Closing Date</label>
+                <input type="date" class="form-control" id="SubjectClossingDate">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SClosingDateTypeID">
+                <label for="subjectTypeID">Closing Date Type ID</label>
+                <input type="text" class="form-control" id="SubjectClosingDateTypeID">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SBudgetaryAllocationID">
+                <label for="subjectTypeID">Budgetary Allocation ID</label>
+                <input type="text" class="form-control" id="SubjectBudgetaryAllocationID">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group">
+                <label for="subjectTypeID">Currency ID</label>
+                <select id="CurrencyId" class="form-control">
+                    <option>1</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SRevenueEstimate">
+                <label for="subjectTypeID">Revenue Estimate</label>
+                <input type="text" class="form-control" id="SubjectRevenueEstimate">
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SClassificationID">
+                <label for="subjectTypeID">Classification ID</label>
+                <input type="text" class="form-control" id="SubjectClassificationID">
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="subjectTypeID">Account ID</label>
+                <select class="form-control" id="AccountId">
+                    @foreach (var customerId in db.Customers)
+                    {
+                        <option>@customerId.Id</option>
+                    }
+                </select>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group">
+                <label for="subjectTypeID">Account Contact ID</label>
+                <select class="form-control" id="AccountContactId">
+                    @foreach (var customerContactId in db.CustomerContacts)
+                    {
+                        <option>@customerContactId.Id</option>
+                    }
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="SManagerId">Subject Manager ID</label>
+                <select class="form-control" id="SManagerId">
+                    <option>1</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="CompanyId">Company ID</label>
+                <select class="form-control" id="SCompanyId">
+                    @foreach (var companyId in db.Companies)
+                    {
+                        <option>@companyId.Id</option>
+                    }
+
+                </select>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="SCreateBy">
+                <label for="SubjectDate">Create By</label>
+                <input type="text" class="form-control" id="SubjectCreateBy">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td hidden>
+            <div hidden class="form-group">
+                <label for="subjectTypeID">Location ID</label>
+                <select class="form-control" id="LocationId">
+                    <option>1</option>
+                </select>
+            </div>
+        </td>
+        <td hidden>
+            <div class="form-group" id="SCreatDate">
+                <label hidden for="SubjectDate">Create Date</label>
+                <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="SubjectCreateDate">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <div class="form-group">
+                <button type="submit" id="saveSubjectHeader" class="btn btn-primary">Save</button>
+            </div>
+        </td>
+    </tr>
+</table>

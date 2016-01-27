@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa0a6b56c7b5474594aa61edd053c3ef" Name="Diagram1" ZoomLevel="87">
+        <EntityTypeShape EntityType="SperienceModel.Stage" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectAction" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectActionChecklist" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectActionExpense" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectCategory" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectDocument" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectHeader" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectMarketChannel" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectNote" Width="1.5" PointX="5.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SubjectRating" Width="1.5" PointX="5.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.Category" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.Customer" Width="1.5" PointX="9.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.CustomerAddress" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.CustomerClassification" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.CustomerContact" Width="1.5" PointX="12" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.CustomerCreditLine" Width="1.5" PointX="12" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.ExchangeRate" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.ManufacturerProfile" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.Product" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.SolutionLookup" Width="1.5" PointX="14.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.Tenant" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.User" Width="1.5" PointX="16.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.Company" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.RoleAccess" Width="1.5" PointX="7.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.TimeDimension" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.vwSubjectType" Width="1.5" PointX="18.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.vwBudgetaryAllocation" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SperienceModel.vwDateType" Width="1.5" PointX="18.75" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectHeader_Stage" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectAction_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectActionChecklist_SubjectAction" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectActionExpense_SubjectAction" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectCategory_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectDocument_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectMarketChannel_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectNote_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_SubjectRating_SubjectHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_CustomerAddress_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_CustomerClassification_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_CustomerContact_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="SperienceModel.FK_CustomerCreditLine_Customer" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SperienceModel.vwActionType" Width="1.5" PointX="19.75" PointY="20.75" />
+        <EntityTypeShape EntityType="SperienceModel.vwClassification" Width="1.5" PointX="21.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SperienceModel.vwCompany" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="SperienceModel.vwCurrency" Width="1.5" PointX="2.75" PointY="21.75" />
+        <EntityTypeShape EntityType="SperienceModel.vwManufacturer" Width="1.5" PointX="21.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SperienceModel.vwMarketChannel" Width="1.5" PointX="21.75" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

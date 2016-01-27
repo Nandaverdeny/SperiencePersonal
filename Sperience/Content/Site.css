@@ -1,0 +1,94 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-size:initial;
+    background-color:#ffffff;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* Ini Punya Html5rocks*/
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+.column {
+  margin: 10px;
+  height: 60px;
+  width: 170px;
+ 
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-box-shadow: inset 8px 0px 0px 0px rgba(7,145,219,1);
+  -moz-box-shadow: inset 8px 0px 0px -1px rgba(7,145,219,1);
+  box-shadow: inset 8px -3px -3px 5px rgba(7,145,219,1);
+  border: 1px solid #1774d6;
+  text-align: center;
+  cursor: move;
+  background-color:#ffffff;
+  
+}
+.column header {
+  text-align:left; 
+  padding-left:12px; 
+  padding-top:2px; 
+  font-size:small; 
+  font-weight:bold;
+  margin-bottom:0px;
+  padding-top:2px;
+}
+.column p {
+  text-align:left; 
+  padding-left:10px;
+  padding-top:2px;
+  margin-bottom:0px;
+  font-size:11px;
+}
+
+.column.over {
+  border: 2px dashed #000;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width:auto;
+}
+
+.column-title {
+    padding:1px 1px 1px 1px;
+    background-color: #ffffff;
+    text-align:right;
+    width:inherit;
+    height:41px;
+    border: 1px solid #bababa;
+    color:#a9a9a9;
+}
+
+navsidebar {
+    width:220px;
+}

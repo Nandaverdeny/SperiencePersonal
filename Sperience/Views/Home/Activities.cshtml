@@ -1,0 +1,350 @@
+﻿@{
+    ViewBag.Title = "Activities";
+    var db = new SperienceEntities();
+   
+   
+}
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+      rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+        type="text/javascript"></script>
+
+<script>
+    $(document).ajaxComplete(function () {
+        var a;
+        $("#deleteexp").click(function () {
+            var a = $("#expid").val();
+            console.log(a);
+            $.ajax({
+                type: "POST",
+                url: "/Home/Delete/",
+                data: {id : a},
+                success: function () {
+                    window.location.reload(true)
+                }             
+                });
+        });
+    })
+
+   
+  
+</script>
+<script type="text/javascript">
+    $(document).ajaxComplete(function () {
+        $(function () {
+            $('#expenses').multiselect({
+                includeSelectAllOption: true
+            });
+        });
+    });
+
+</script>
+<script>
+    $(document).ajaxComplete(function () {
+
+        $("#expsave").click(function () {
+            alert("button click");
+            var selected = $("#expenses option:selected");
+            var message = [];
+            selected.each(function () {
+                message.push($(this).val());
+            });
+
+
+            console.log(message);
+
+            for (var i = 0; i < message.length; i++) {
+
+                if ($("#Amounttravelto").val() != "" && $("#ExpenseTypeIdTravelto").val() != "" && message[i]== 4876) {
+                    var subjectActionExpense = {
+                        "ActionId": $("#Id").val(),
+                        "ExpenseTypeId": 4876,
+                        "ExpenseDescription": $("#ExpenseTypeIdTravelto").val(),
+                        "ExpenseAmount": $("#Amounttravelto").val(),
+                        "CompanyId": 1,
+                        "LocationId": 1,
+                        "CreatedDate": $("#CreatedDate").val() + 'T00:00:00',
+                        "Createdby": 2,
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        ContentType: "application/json; charset=utf-8",
+                        url: "/_sperience/SubjectActionExpenses/",
+                        data: subjectActionExpense
+
+                    });
+
+
+
+                }
+                else if ($("#ExpenseTypeIdTravelfrom").val() != "" && $("#Amounttravelfrom").val() != "" && message[i] == 4877) {
+                    var b = {
+                        "ActionId": $("#Id").val(),
+                        "ExpenseTypeId": 4877,
+                        "ExpenseDescription": $("#ExpenseTypeIdTravelfrom").val(),
+                        "ExpenseAmount": $("#Amounttravelfrom").val(),
+                        "CompanyId": 1,
+                        "LocationId": 1,
+                        "CreatedDate": $("#CreatedDate").val() + 'T00:00:00',
+                        "Createdby": 2
+                    }
+                    $.ajax({
+                        type: "POST",
+                        ContentType: "application/json; charset=utf-8",
+                        url: "/_sperience/SubjectActionExpenses/",
+                        data: b
+                    });
+                }
+
+                else if ($("#ExpenseAllowance").val() != "" && $("#Amountallowance").val() != "" && message[i] == 4878) {
+                    var c = {
+                        "ActionId": $("#Id").val(),
+                        "ExpenseTypeId": 4878,
+                        "ExpenseDescription": $("#ExpenseAllowance").val(),
+                        "ExpenseAmount": $("#Amountallowance").val(),
+                        "CompanyId": 1,
+                        "LocationId": 1,
+                        "CreatedDate": $("#CreatedDate").val() + 'T00:00:00',
+                        "Createdby": 2
+
+
+                    }
+                    $.ajax({
+                        type: "POST",
+                        ContentType: "application/json; charset=utf-8",
+                        url: "/_sperience/SubjectActionExpenses/",
+                        data: c
+                    });
+                }
+                else if ($("#ExpenseAccomodation").val() != "" && $("#AmountAccomodation") != "" && message[i] == 4879) {
+                    var d = {
+                        "ActionId": $("#Id").val(),
+                        "ExpenseTypeId": 4879,
+                        "ExpenseDescription": $("#ExpenseAccomodation").val(),
+                        "ExpenseAmount": $("#AmountAccomodation").val(),
+                        "CompanyId": 1,
+                        "LocationId": 1,
+                        "CreatedDate": $("#CreatedDate").val() + 'T00:00:00',
+                        "Createdby": 2,
+                    }
+                    $.ajax({
+                        type: "POST",
+                        ContentType: "application/json; charset=utf-8",
+                        url: "/_sperience/SubjectActionExpenses/",
+                        data: d
+                    });
+                }
+                console.log(subjectActionExpense, c, d);
+            };
+
+        });
+    });
+
+
+</script>
+<script type="text/javascript">
+    $(document).ajaxComplete(function () {
+        var total = 0;
+        $('.exp').each(function (i, exp) {
+            var exp = $(this).text();
+
+            if (exp != 'NA') {
+                total = total + parseInt(exp);
+            }
+            $("#total").text(total);
+        })
+    })
+</script>
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev,loc) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+        //alert("Hello! I am moved to " + loc);
+        $('#Modal').modal('show');
+    }
+
+    function add() {
+        $('#Modal').modal('show');
+    }
+
+    function addexp() {
+        $('#Modalnew').modal('show');
+    }
+
+    $(document).ready(function () {
+        $("#saveExpenses").click(function () {
+            alert("button click");
+        });
+    });
+   
+    function exp() {
+       
+        var selected = $("#expenses option:selected");
+        var message = [];
+        selected.each(function () {
+            message.push($(this).val());
+        });
+    
+        
+        console.log(message);
+
+        for (var i = 0; i < message.length; i++) {
+            if ( message[i] == 4876) {
+             $("#travelto").show();
+           
+            }
+            else if (message[i] == 4877) {
+                $("#travelfrom").show();
+
+            }
+            else if (message[i] == 4878) {
+                $("#Allowance").show();
+
+            }
+            else if (message[i] == 4879) {
+                $("#Accomodation").show();
+
+            }                  
+        }       
+    }
+</script>
+
+<h2>Activities</h2>
+    <div class="ui-layout-center" style="height: 700px; width:auto;">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#task">Task</a></li>
+                <li><a data-toggle="tab" href="">Document & Notes</a></li>
+
+            </ul>
+            <div class="tab-content">
+                <div id="task" class="tab-pane fade in active" style="height:250px;  margin-right:-20px; overflow:hidden;">
+                    <div ondrop="drop(event, 'New')" ondragover="allowDrop(event)" style="width:200px; float:left;height:250px;background:#e1dfdf;margin:2px;overflow: auto;">
+                        <div class="column-title">
+                            <h4 style="text-align:center;">
+                                <span id="add" onclick="add('add')" class="glyphicon glyphicon-plus-sign" style="float:left; margin:8px; margin-top:0.2px; font-size:large; color:lightgreen;"></span><span>New</span>
+                            </h4>
+                        </div>
+                         @foreach(var item in db.SubjectActions.Where(u=>u.StageActionId==1)){
+                        
+                          <div id="@item.Id"class="column" draggable="true" ondragstart="drag(event);" ondblclick="add()">
+                           <header>@item.ActionTitle</header>
+                           <p>@item.ActionDescription</p>
+                           <p>Expiry Date : @item.ExpiryDate.ToShortDateString()</p>
+                          </div>
+                        }               
+                    </div>
+                    <div ondrop="drop(event, 'InProgress')" ondragover="allowDrop(event)" style="width:200px; float:left;height:250px;background:#e1dfdf;margin:5px;overflow: auto;">
+                        <div class="column-title">
+                            <h4 style="text-align:center;">
+                                <span style="float:initial;">In Progress</span>
+                            </h4>
+                        </div>
+                        @foreach (var item in db.SubjectActions.Where(u => u.StageActionId == 2))
+                        {
+                            <div id="@item.Id" class="column" draggable="true" ondragstart="drag(event);" ondblclick="add()">
+                                <header>
+                                    @item.ActionTitle
+                                </header>
+                                <p>@item.ActionDescription</p>
+                                <p>Expiry Date : @item.ExpiryDate.ToShortDateString()</p>
+                            </div>
+                        }
+                    </div>
+                    <div ondrop="drop(event, 'InProgress')" ondragover="allowDrop(event)" style="width:200px; float:left;height:250px;background:#e1dfdf;margin:2px;overflow: auto;">
+                        <div class="column-title">
+                            <h4 style="text-align:center;">
+                                <span style="float:initial;">Done</span>
+                            </h4>
+                        </div>
+
+                        @foreach (var item in db.SubjectActions.Where(u => u.StageActionId == 3))
+                        {
+                            <div id="@item.Id" class="column" draggable="true" ondragstart="drag(event);" ondblclick="add()">
+                                <header>@item.ActionTitle</header>
+                                <p>@item.ActionDescription</p>
+                                <p>Expiry Date : @item.ExpiryDate.ToShortDateString()</p>
+                            </div>
+                        }
+                    </div>
+                    <br />
+                
+                <div id="actiondetail" style="width:950px; float:left;height:auto;background:#FFFFFF;overflow: auto;margin:8px;margin-top:5px;">
+                    <div id="detail" style="margin-left:15px">
+
+                    </div>
+                </div>
+                <div class="modal fade" id="Modal" role="dialog" style="width:100%;height:100%;">
+                    <div class="modal-dialog" style="width:90%; height:inherit; margin:auto; padding:50px;">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                               @Html.Partial("_FormActivity")
+
+                            </div>
+                            <div class="modal-footer">
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+               </div>
+                </div>
+
+
+            </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.column').click(function (event, ui) {
+                console.log($(this).attr('id'));
+                var id = $(this).attr('id');
+                $.ajax({
+                    url: "/Home/Actiondetails", 
+                    data: { id: id },
+                    success: function (result) {
+                        document.getElementById("detail").innerHTML = result;
+                    }
+                });
+            });
+
+        });
+    </script>
+@*<script type="text/javascript">
+    $(document).ready(function () {
+        $('.column').click(function (event, ui) {
+            console.log($(this).attr('id'));
+            var id = $(this).attr('id');
+            $.ajax({
+                url: "/_sperience/SubjectActionExpenses/",
+                data: { id: id }
+
+
+
+            });
+
+
+        });
+    });
+</script>*@
+

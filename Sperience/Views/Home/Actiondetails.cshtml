@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.Title = "Action Detail";
+    SperienceEntities db = new SperienceEntities();
+}
+
+@foreach (var item in ViewBag.result)
+{
+    <h4>Action Details</h4>
+        <table class="table">
+            <tr>
+                <td>
+                    <div class="form-group">
+                       <input type="hidden" value="@item.Id" />
+                        <label for="">Title :</label>
+                       <text> @item.ActionTitle</text>
+                    </div>
+                </td>
+                <td>    
+                    <div class="form-group">
+                        <label for="">Action : </label>                                    
+                        <text>                           
+                          @item.Code
+                        </text>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="">Description :</label>
+                        <text>@item.ActionDescription</text>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                    <label for="">Expiry :</label>
+                        <text>@item.ExpiryDate</text>
+                    </div>             
+                </td>
+                <td>
+                    <table class="table table-hover">
+                        <tr id="package1" class="accordion-toggle" data-toggle="collapse" data-parent="" data-target=".packageDetails1">
+                            <td><label>Expenses</label></td>
+                            <td>
+                                <span id="addexp" onclick="addexp()" class="glyphicon glyphicon-plus-sign" style="float:left; margin:8px; margin-top:0.2px; font-size:large; color:lightgreen;"></span>
+                               
+                            </td>
+                            
+
+                            <td><i class="indicator glyphicon glyphicon-chevron-up pull-right"></i></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <div class="accordion-body collapse packageDetails1" id="accordion1">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <table class="table">
+                                                    @foreach (var exp in ViewBag.expenses)
+                                                    {
+                                                        <tr>
+                                                            <td><input type="hidden" id="expid" value=@exp.Id></td>
+                                                            <td><label>@exp.Code</label></td>
+                                                            <td><input type="text" value="@exp.ExpenseDescription" /></td>
+                                                            <td class="exp"><label id="amount @exp.Id">@exp.ExpenseAmount</label></td>
+                                                            <td><span id="deleteexp" class="glyphicon glyphicon-minus-sign" style="float:left; margin:8px; margin-top:0.2px; font-size:large; color:red;"></span></td>
+
+                                                        </tr>
+                                                    }
+                                                    <tr>
+
+                                                        <td>Total</td>
+                                                        <td></td>
+                                                        <td><label id="total"></label></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+                <td>
+                   
+                </td>
+                
+                <td>
+                    
+                    <div class="form-group">
+                        <label for=""></label>
+                    </div>
+                    
+                </td>
+               
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="">Start :</label>
+                        <text>@item.StartDateTime</text>
+                    </div> 
+                </td>
+               
+                
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>End :</label>
+                        <text>@item.EndDateTime</text>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Outcome :</label>
+                        <text>@item.Outcome</text>
+                    </div>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label>Outcome Description :</label><br />
+                        <text>@item.OutcomeDescription</text>
+                    </div>
+
+                </td>                            
+            </tr>
+            <tr>
+                <td>
+                    <div class=" form-group">
+                        <label>Assinged :</label>
+                        <text>@item.Assignedto</text>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    
+
+
+
+<div class="modal fade" id="Modalnew" role="dialog" style="width:100%;height:100%; position:center">
+    <div class="modal-dialog" style="width:90%; height:inherit; margin:auto; padding:50px;position:center">
+         
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Expenses</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("Expenses")
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button type="submit"   id="expsave" class="btn btn-primary" value="Get Selected">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+      
+}
+      
+
+            

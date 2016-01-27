@@ -1,0 +1,8 @@
+﻿crm.SubjectHeader 
+    change dataType AccountId & AccountContactId To int 
+    add Column StageId dataType int 
+    
+add FK [crm.SubjectHeader][StageId] to [crm.Stage][Id]
+    alter table crm.SubjectHeader add
+        constraint FK_SubjectHeader_Stage foreign key(StageId) references crm.Stage(Id);
+    go

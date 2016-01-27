@@ -1,0 +1,203 @@
+﻿<link href="~/Content/acccordion.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="~/Content/acccordion.css" rel="stylesheet" />
+@{
+    var db = new SperienceEntities();
+}
+<script>
+    $(function () {
+        $("#accordion").accordion({
+            collapsible: true,
+            active: false,
+        });
+        $("#CategoryProduct").dialog({
+            autoOpen: false,
+            height: 270,
+            width: 300,
+            modal: true,
+        });
+        $("#addProduct").click(function () {
+            var sId = $('#Id').val();
+            $('#subjectId').attr('value', sId);
+            $("#CategoryProduct").dialog("open");
+        });
+        $("#saveSubjectCategory").click(function () {
+            var product = {
+                "SubjectId": $("#subjectId").val(),
+                "CategoryId": $("#Category").val(),
+                "RevenueEstimate": $("#EstimatedRevenue").val(),
+                "CompanyId": $("#company").val(),
+                "LocationId": 1,
+                "CreatedDate": $('#CreateDate').val() + 'T00:00:00',
+                "CreatedBy": 1
+            };
+            $.ajax({
+                type: "POST",
+                ContentType: "application/json; charset=utf-8",
+                url: "/_sperience/SubjectCategories/",
+                data: product,
+                success: function () {
+                    $("#Category, #EstimatedRevenue").val("");
+                    window.location.reload(true);
+                }
+            })
+        });
+        $(document).ready(function () {
+            $("#product").append('@foreach (var product in ViewBag.product){<tr><td id=@product.id>@product.CategoryName</td><td></td><td class="price" id=@product.RevenueEstimate>@product.RevenueEstimate</td><td><span id="deleteProductCategory" value=@product.id class="glyphicon glyphicon-minus-sign"  style="float:right; margin:0px; font-size:large; color:red;"></span></td></tr>}')
+            console.log(product);
+            var total = 0;
+            $(".price").each(function (price) {
+                var price = $(this).text();
+                if (price) {
+                    total = total + parseInt(price);
+                }
+                $('#total').text(total);
+            });
+            $("#deleteProductCategory").click(function () {
+                console.log($(this).attr('value'));
+                $.ajax({
+                    type: "POST",
+                    ContentType: "application/json; charset=utf-8",
+                    url: "/_sperience/SubjectCategories/",
+                    data: product,
+                    success: function () {
+                        $("#Category, #EstimatedRevenue").val("");
+                        window.location.reload(true);
+                }
+            });
+            })
+        })
+
+    });
+</script>
+    <div id="accordion" class="accordion">
+        <div class="accordion-section-title">Lead</div>
+        <div class="accordion-section-content">
+            <table class="table">
+                @foreach (var item in ViewBag.sHeader)
+                {
+                <tr>
+                    <td id="title">Title : @item.SubjectTitle
+                    <input type="hidden" id="Id" value="@item.Id"/>
+                    <input type="hidden" id="company" value="@item.CompanyId" />
+                    <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="CreateDate">
+                    </td>
+                    <td id="source">Source : @item.SubjectTypeId</td>
+                </tr>
+               
+                <tr>
+                    <td id="description">Description : @item.SubjectDescription</td>
+                </tr>
+                }
+            </table>
+        </div>
+        <div class="accordion-section-title">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">Account & Contact</div>
+                <div class="col-xs-6 col-md-4">Account Manager</div>
+                <div class="col-xs-6 col-md-4">Account Members</div>
+            </div>
+       </div>
+        <div class="accordion-section-content">
+            <div class="row">
+                <div class="col-xs-6 col-md-4">Account & Contact</div>
+                <div class="col-xs-6 col-md-4">Account Manager</div>
+                <div class="col-xs-6 col-md-4">Account Members</div>
+            </div>
+        </div>
+        <div class="accordion-section-title">Estimate</div>
+        <div class="accordion-section-content">
+            <div class="row">
+                <div class="col-xs-12 col-md-8">
+                    <table class="table">
+                        @foreach (var item in ViewBag.sHeader)
+                        { 
+                        <tr>
+                            <td>Clossing Date: @item.ClosingDate</td>
+                        </tr>
+                        }
+                        @foreach(var guarantee in ViewBag.guarantee){
+                        <tr>
+                            <td>Guarantee : @guarantee.Code</td>
+                        </tr>
+                        }
+                        @foreach (var Monetary in ViewBag.MonetaryAllocation)
+                        {
+                            <tr>
+                                <td>Monetary Allocation : @Monetary.Code</td>
+                            </tr>
+                        }
+                        
+                    </table>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Produc Category<span id="addProduct" class="glyphicon glyphicon-plus-sign" style="float:right; margin:0px; font-size:large; color:lightgreen;"></span>
+                                </th>
+                                <th></th>
+                                <th>
+                                    Estimate Revenue
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="product">
+                            @*<tr>
+                                @foreach (var product in ViewBag.product)
+                                {
+                                    <td>@product.CategoryName</td>
+                                    <td></td>
+                                    <td id="revenueEstimated">@product.RevenueEstimate</td>
+                                }                                                   
+                            </tr>*@
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>
+                                    Total
+                                </th>
+                                <th></th>
+                                <th><label id="total"></label></th>
+                            </tr>
+                        </tfoot>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="CategoryProduct" title="Basic dialog">
+    <table class="table">
+        <tr>
+            <td hidden>
+                
+                    <input type="text" class="form-control" id="subjectId" value="" />
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="Category">Product Category</label>
+                <select class="form-control" id="Category">
+                    @foreach (var category in db.Categories)
+                    {
+                        <option value=@category.Id>@category.CategoryName</option>
+                    }
+                </select>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="EstimatedRevenue">Estimated Revenue</label>
+                <input type="text" class="form-control" id="EstimatedRevenue">
+            </td>
+        </tr>
+        <tr>
+            <td><button type="button" id="saveSubjectCategory" class="btn btn-primary" style="float:right">Save</button></td>
+        </tr>
+    </table>
+</div>

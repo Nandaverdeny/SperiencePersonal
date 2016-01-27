@@ -1,0 +1,90 @@
+﻿@{
+   
+    SperienceEntities db = new SperienceEntities();
+}
+
+
+
+
+<table class="table">
+    <tr>
+
+        <td>
+            <div class="form-group" id="checkboxlist">
+                <label for="expenses">Expenses</label> <br />
+                @*@foreach (var item in db.SolutionLookups.Where(u => u.TypeCode == "Expense"))
+                {
+                    <input type="checkbox" id="@item.Id" value="@item.Id" />@item.Code
+                }*@
+                <select class="form-control" id="expenses" multiple="multiple">
+                @foreach (var item in db.SolutionLookups.Where(u => u.TypeCode == "Expense"))
+                {
+                    <option value="@item.Id"> @item.Code</option>
+                }
+            </select>
+            <button type="submit" onclick="exp()" id="selectExpenses" class="btn btn-primary" value="Get Selected">Select</button>
+
+            </div>
+           
+        </td>
+       </tr>
+    <tr>
+        
+  <td>
+      @foreach (var item in ViewBag.result)
+      {
+
+          <input type="hidden" value="@item.Id" id="Id" />
+
+      }
+             <div class="form-group" id="travelto" style="display:none">
+                <label>Travel To </label>
+                <input type="text" id="ExpenseTypeIdTravelto" /> 
+                <label> Amount </label>
+                <input type="text" id="Amounttravelto" />
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="travelfrom" style="display:none">
+               <label> Travel From </label>
+               <input type="text" id="ExpenseTypeIdTravelfrom" />
+               <label> Amount </label> 
+               <input type="text" id="Amounttravelfrom" />
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="Allowance" style="display:none">
+               <label>Allowance</label>  
+                <input type="text" id="ExpenseAllowance" /> 
+                <label>Amount</label> 
+                <input type="text"  id="Amountallowance"/>
+            </div>
+        </td>
+        <td>
+            <div class="form-group" id="Accomodation" style="display:none">
+               <label> Accomodation</label> 
+               <input type="text" id="ExpenseAccomodation" />
+               <label>Amount</label> 
+               <input type="text" id="AmountAccomodation" />
+            </div>
+            
+        </td>
+        </tr>
+     <tr>
+       
+        <td>
+            <div class="form-group">
+                <label hidden for="CreateDate">Create Date</label>
+                <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="CreatedDate">
+            </div>
+        </td>
+        
+    </tr>
+</table>
+
+
+
+
+
+
+

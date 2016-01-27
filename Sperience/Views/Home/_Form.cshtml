@@ -1,0 +1,474 @@
+﻿@{
+    var db = new SperienceEntities();
+}
+<div>
+    <!-- tabs left -->
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#a" data-toggle="tab">Subject</a></li>
+            <li><a href="#b" data-toggle="tab">Account</a></li>
+            <li><a href="#c" data-toggle="tab">Contact</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!--SUBJECT-->
+            <div class="tab-pane active" id="a">
+                <div class="Box">
+                    <br />
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">Subject Header</h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectId">Subject ID</label>
+                                            <input type="text" class="form-control" id="SubjectId">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectTypeID">Subject Type ID</label>
+                                            <select class="form-control" id="SubjectTypeID">
+                                                @foreach (var SubjectType in db.SolutionLookups.Where(u => u.TypeCode == "SubjectType"))
+                                                {
+                                                    <option value=@SubjectType.Id>@SubjectType.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectTitle">Subject Title:</label>
+                                            <input type="text" class="form-control" id="SubjectTitle">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectDescription">Subject Description</label>
+                                            <input type="text" class="form-control" id="SubjectDescription">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectDate">Subject Date</label>
+                                            <input type="date" data-format="yyyy/dd/MM" class="form-control" id="SubjectDate">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectClossingDate">Closing Date</label>
+                                            <input type="date" class="form-control" id="SubjectClossingDate">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectClosingDateTypeID">Closing Date Type ID</label>
+                                            <select class="form-control" id="SubjectClosingDateTypeID">
+                                                @foreach (var ClosingDateType in db.SolutionLookups.Where(u => u.TypeCode == "DateType"))
+                                                {
+                                                    <option value=@ClosingDateType.Id>@ClosingDateType.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectBudgetaryAllocationID">Budgetary Allocation ID</label>
+                                            <select class="form-control" id="SubjectBudgetaryAllocationID">
+                                                @foreach (var BudgetaryAllocation in db.SolutionLookups.Where(u => u.TypeCode == "BudgetaryAllocation"))
+                                                {
+                                                    <option value=@BudgetaryAllocation.Id>@BudgetaryAllocation.Code</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CurrencyId">Currency ID</label>
+                                            <select id="CurrencyId" class="form-control">
+                                                @foreach (var Currency in db.SolutionLookups.Where(u => u.TypeCode == "Currency"))
+                                                {
+                                                    <option value=@Currency.Id>@Currency.Code</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectRevenueEstimate">Revenue Estimate</label>
+                                            <input type="text" class="form-control" id="SubjectRevenueEstimate">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SubjectClassificationID">Classification ID</label>
+                                            <select class="form-control" id="SubjectClassificationID">
+                                                @foreach (var classification in db.SolutionLookups.Where(u => u.TypeCode == "Classification"))
+                                                {
+                                                    <option value=@classification.Id>@classification.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="AccountId">Account ID</label>
+                                            <select class="form-control" id="AccountId">
+                                                @foreach (var customerId in db.Customers)
+                                                {
+                                                    <option value=@customerId.Id>@customerId.CustomerName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SManagerId">Subject Manager ID</label>
+                                            <select class="form-control" id="SManagerId">
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="SCompanyId">Company ID</label>
+                                            <select class="form-control" id="SCompanyId">
+                                                @foreach (var companyId in db.Companies)
+                                                {
+                                                    <option>@companyId.Id</option>
+                                                }
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label hidden for="SubjectCreateDate">Create Date</label>
+                                            <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="SubjectCreateDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="saveSubjectHeader" class="btn btn-primary" style="float:right; margin-right:15px; margin-bottom:15px;">Save</button>
+                </div>
+            </div>
+            <!--ACCOUNT-->
+            <div class="tab-pane" id="b">
+                <div class="Box">
+                    <br />
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">Account</h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerDomain">Domain</label>
+                                            <input type="text" class="form-control" id="CustomerDomain">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Customer Name</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerDescription">Customer Description</label>
+                                            <input type="text" class="form-control" id="CustomerDescription">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="PaymentTerm">Payment Term</label>
+                                            <select class="form-control" id="PaymentTerm">
+                                                @foreach (var paymentTerm in db.SolutionLookups.Where(u => u.TypeCode == "PaymentTerm"))
+                                                {
+                                                    <option value=@paymentTerm.Id>@paymentTerm.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerIndustri">Industri</label>
+                                            <select class="form-control" id="CustomerIndustri">
+                                                @foreach (var industry in db.SolutionLookups.Where(u => u.TypeCode == "Industry"))
+                                                {
+                                                    <option value=@industry.Id>@industry.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerType">Customer Type</label>
+                                            <select class="form-control" id="CustomerType">
+                                                @foreach (var customerType in db.SolutionLookups.Where(u => u.TypeCode == "Customer Type"))
+                                                {
+                                                    <option value=@customerType.Id>@customerType.Code</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerWebsite">Website</label>
+                                            <input type="text" class="form-control" id="CustomerWebsite">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerEmail">Email</label>
+                                            <input type="text" class="form-control" id="CustomerEmail">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CustomerSocialMediaAcc1">Social Media Account 1</label>
+                                            <input type="text" class="form-control" id="CustomerSocialMediaAcc1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4" hidden>
+                                        <div class="form-group">
+                                            <label for="CustomerManagingMembers">Managing Members</label>
+                                            <input type="text" class="form-control" id="CustomerManagingMembers">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4" hidden>
+                                        <div class="form-group">
+                                            <label for="CustomerRemarks">Remarks</label>
+                                            <input type="text" class="form-control" id="CustomerRemarks">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="optradio">Active</label>
+                                            <br />
+                                            <label><input type="radio" id="optradio" name="optradio" value="True">True</label>
+                                            <label><input type="radio" id="optradio" name="optradio" value="False">False</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4" hidden>
+                                        <div class="form-group">
+                                            <label hidden for="subjectTypeID">Created Date</label>
+                                            <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="CCreatedDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="saveAccount" class="btn btn-primary" style="float:right; margin-right:15px;">Save</button>
+                </div>
+            </div>
+            <!--Contact-->
+            <div class="tab-pane" id="c">
+                <div class="Box">
+                    <br />
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">Contact</h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="customerContactId">Customer Id</label>
+                                            <select class="form-control" id="customerContactId">
+                                                @foreach (var customer in db.Customers)
+                                                {
+                                                    <option value=@customer.Id>@customer.CustomerName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCSalutation">Salutation</label>
+                                            <input type="text" class="form-control" id="CCSalutation">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCFullName">Full Name</label>
+                                            <input type="text" class="form-control" id="CCFullName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCDesignation">Designation</label>
+                                            <input type="text" class="form-control" id="CCDesignation">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCEmail">Email</label>
+                                            <input type="text" class="form-control" id="CCEmail">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCMobile">Mobile</label>
+                                            <input type="text" class="form-control" id="CCMobile">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCFax">Fax</label>
+                                            <input type="text" class="form-control" id="CCFax">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCSocialMediaAcc">Social Media Acc</label>
+                                            <input type="text" class="form-control" id="CCSocialMediaAcc">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="CCoptradio">Active</label>
+                                            <div class="form-group">
+                                                <label><input type="radio" id="CCoptradio" name="CCoptradio" value="True">True</label>
+                                                <label><input type="radio" id="CCoptradio" name="CCoptradio" value="False">False</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4" hidden>
+                                        <div class="form-group">
+                                            <label hidden for="CCCreateDate">Create Date</label>
+                                            <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="CCCreateDate">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="saveCustomerContact" class="btn btn-primary" style="float:right; margin-right:15px;">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#saveSubjectHeader").click(function () {
+            var subjectHeader = {
+                //"StageId": $("#StageId").val(),
+                "SubjectId": $("#SubjectId").val(),
+                "SubjectTypeId": $("#SubjectTypeID").val(),
+                "SubjectTitle": $("#SubjectTitle").val(),
+                "SubjectDescription": $("#SubjectDescription").val(),
+                "SubjectDate": $("#SubjectDate").val() + 'T00:00:00',
+                "ClosingDate": $("#SubjectClossingDate").val() + 'T00:00:00',
+                "ClosingDateTypeId": $("#SubjectClosingDateTypeID").val(),
+                "BudgetaryAllocationId": $("#SubjectBudgetaryAllocationID").val(),
+                "CurrencyId": $("#CurrencyId").val(),
+                "RevenueEstimate": $("#SubjectRevenueEstimate").val(),
+                "ClassificationId": $("#SubjectClassificationID").val(),
+                "AccountId": $("#AccountId").val(),
+                "AccountContactId": $("#AccountContactId").val(),
+                "SubjectManagerId": $("#SManagerId").val(),
+                "CompanyId": $("#SCompanyId").val(),
+                "LocationId": $("#LocationId").val(),
+                "CreatedDate": $('#SubjectDate').val() + 'T00:00:00',
+                //"Createdby": $("#SubjectCreateBy").val()
+            };
+            $.ajax({
+                type: "POST",
+                ContentType: "application/json; charset=utf-8",
+                url: "/_sperience/subjectheaders/",
+                data: subjectHeader,
+                success: $("#StageId, #SubjectId, #SubjectTypeID, #SubjectTitle, #SubjectDescription, #SubjectDate , #SubjectClossingDate, " +
+                          "#SubjectClosingDateTypeID, #SubjectBudgetaryAllocationID, #CurrencyId,#SubjectRevenueEstimate, #SubjectClassificationID, " +
+                          "#SubjectClassificationID, #AccountId, #AccountContactId, #SManagerId, #SCompanyId, #LocationId, #SubjectCreateBy").val("")
+            });
+            console.log(JSON.stringify(subjectHeader));
+        });
+        $("#saveAccount").click(function () {
+            var account = {
+                //"RegistrationId": $("#CustomerRegistrationID").val(),
+                //"GSTRegistration": $("#CustomerGSTRegistration").val(),
+                "Domain": $("#CustomerDomain").val(),
+                "CustomerName": $("#CustomerName").val(),
+                "CustomerDescription": $("#CustomerDescription").val(),
+                "PaymentTermId": $("#PaymentTerm").val(),
+                "IndustriId": $("#CustomerIndustri").val(),
+                "CustomerTypeId": $("#CustomerType").val(),
+                "Website": $("#CustomerWebsite").val(),
+                "Email": $("#CustomerEmail").val(),
+                "SocialMediaAcct1": $("#CustomerSocialMediaAcc1").val(),
+                //"SocialMediaAcct2": $("#CustomerSocialMediaAcc2").val(),
+                //"SocialMediaAcct3": $("#CustomerSocialMediaAcc3").val(),
+                //"SocialMediaAcct4": $("#CustomerSocialMediaAcc4").val(),
+                //"ManagingMembers": $("#CustomerManagingMembers").val(),
+                //"Remarks": $("#CustomerRemarks").val(),
+                //"ContextCompanyId": $("#ContextCompanyId").val(),
+                //"ContextLocationId": $("#ContextLocationId").val(),
+                //"ParentCustomerId": $("#ParentCustomer").val(),
+                "Active": $("input[name=optradio]:checked").val(),
+                //"CompanyId" : $("#CCompanyId").val(),
+                //"LocationId": $("#LocationId").val(),
+                "CreatedDate": $("#CCreatedDate").val() + 'T00:00:00',
+                //"CreatedBy": $("#CCreatedBy").val()
+            }
+            $.ajax({
+                type: "POST",
+                ContentType: "application/json; charset=utf-8",
+                url: "/_sperience/Customers/",
+                data: account,
+                success: $("#CustomerRegistrationID, #CustomerGSTRegistration,#CustomerDomain, #CustomerName, #CustomerDescription" +
+                            "#PaymentTerm, #CustomerIndustri, #CustomerType, #CustomerWebsite, #CustomerEmail, #CustomerSocialMediaAcc1," +
+                            "#CustomerSocialMediaAcc2, #CustomerSocialMediaAcc3, #CustomerSocialMediaAcc4, #CustomerManagingMembers, #CustomerRemarks," +
+                            "#ContextCompanyId,#ContextLocationId,#ParentCustomer,#CustomerActive, #CCompanyId, #LocationId, #CCreatedDate, #CCreatedBy").val(""),
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status :" + textStatus); alert("Error:" + errorThrown);
+                }
+            });
+            console.log(JSON.stringify(account));
+        });
+        $("#saveCustomerContact").click(function () {
+            var contact = {
+                "CustomerId": $("#customerContactId").val(),
+                "Salutation": $("#CCSalutation").val(),
+                "FullName": $("#CCFullName").val(),
+                "Designation": $("#CCDesignation").val(),
+                "Email": $("#CCEmail").val(),
+                "Mobile": $("#CCMobile").val(),
+                //"DID": $("#CCDID").val(),
+                "Fax": $("#CCFax").val(),
+                "SocialMediaAcct1": $("#CCSocialMediaAcc").val(),
+                "SocialMediaAcct2": $("#CCSocialMediaAcc1").val(),
+                "SocialMediaAcct3": $("#CCSocialMediaAcc2").val(),
+                "SocialMediaAcct4": $("#CCSocialMediaAcc3").val(),
+                "Active": $("input[name=CCoptradio]:checked").val(),
+                //"CompanyId": $("#CCCompanyId").val(),
+                //"LocationId": $("#CCLocationId").val(),
+                "CreatedDate": $("#CCCreateDate").val() + 'T00:00:00',
+                //"Createdby": $("#CCCreateBy").val(),
+            }
+            $.ajax({
+                type: "POST",
+                ContentType: "application/json; charset=utf-8",
+                url: "/_sperience/CustomerContacts/",
+                data: contact,
+                success: $("#customerContactId, #CCSalutation, #CCFullName, #CCDesignation, #CCEmail, #CCMobile, #CCDID, #CCFax, #CCSocialMediaAcc," +
+                            "#CCSocialMediaAcc1, #CCSocialMediaAcc2, #CCSocialMediaAcc3, #CCActive, #CCCompanyId, #CCLocationId, #CCCreateDate, #CCCreateBy").val("")
+            });
+            console.log(JSON.stringify(contact));
+        });
+    });
+</script>

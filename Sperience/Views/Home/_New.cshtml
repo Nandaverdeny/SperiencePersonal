@@ -1,0 +1,129 @@
+﻿@{
+    var db = new SperienceEntities();
+}
+<div>
+    <!-- tabs left -->
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#a" data-toggle="tab">Subject</a></li>
+            <li><a href="#b" data-toggle="tab">Account</a></li>
+            <li><a href="#c" data-toggle="tab">Contact</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!--SUBJECT-->
+            <div class="tab-pane active" id="a">
+                <br />
+                <h4>Subject Header</h4>
+                <div class="Box">
+                    <br />
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">General Information </h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Name</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CCCompanyId">Company Id</label>
+                                            <select class="form-control" id="CCCompanyId">
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">Contact</h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Website</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Email</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Social Media Account</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="float-left">Customer Information</h4>
+                            </div>
+                            <div id="details" class="panel-body form-group form-group-sm">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CCoptradio">Active</label>
+                                            <div class="form-group">
+                                                <label><input type="radio" id="CCoptradio" name="CCoptradio" value="True">True</label>
+                                                <label><input type="radio" id="CCoptradio" name="CCoptradio" value="False">False</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Email</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="form-group">
+                                            <label for="CustomerName">Social Media Account</label>
+                                            <input type="text" class="form-control" id="CustomerName">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--ACCOUNT-->
+            <div class="tab-pane" id="b">
+                <br />
+                <h4>Account</h4>
+                <hr />
+               test b
+
+
+            </div>
+            <!--Contact-->
+            <div class="tab-pane" id="c">
+                <br />
+                <h4>Contact</h4>
+                <hr />
+               test c
+            </div>
+        </div>
+    </div>
+</div>

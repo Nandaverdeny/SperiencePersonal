@@ -1,0 +1,226 @@
+﻿@{
+    var db = new SperienceEntities();
+}
+<div>
+    <!-- tabs left -->
+    <div class="tabbable tabs-left">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#a" data-toggle="tab">Subject</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <!--SUBJECT-->
+            <div class="tab-pane active" id="a">
+                <br />
+                <h4>Subject Action</h4>
+                <hr />
+
+                <table class="table">
+                    <tr>
+                        
+                        <td>
+                            <div class="form-group">
+                                <label for="subjectId">Subject ID</label>
+                                <select class="form-control" id="SubjectId">
+                                    @foreach ( var SubjectID in db.SubjectHeaders )
+                                    {
+                                        <option value="@SubjectID.Id">@SubjectID.SubjectTitle</option>
+                                    }
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SID">
+                                <label for="subjectActionId">Action ID</label>
+                                <input type="text" class="form-control" id="ActionID">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="STypeID">
+                                <label for="subjectActionTypeId">Action Type ID</label>
+                                <select class="form-control" id="ActionTypeID">
+                                @foreach (var actionID in db.vwActionTypes)
+                                {
+                                    <option value="@actionID.Id"> @actionID.Code</option>
+                                }
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SStageActionID">
+                                <label for="subjectStageActionId">Stage Action ID</label>
+                                <select class="form-control" id="StageActionID">
+                                    <option value="1">New</option>
+                                    <option value="2">In Progress</option>
+                                    <option value="3"> Done </option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group" id="SActionTitle">
+                                <label for="subjectActionTitle">Title</label>
+                                <input type="text"  class="form-control" id="ActionTitle">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SDescription">
+                                <label for="subjectDescription">Description</label>
+                                <input type="text" class="form-control" id="ActionDescription">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SExpiryDate">
+                                <label for="subjectExpiry">Expiry Date</label>
+                                <input type="date" data-format="yyyy/dd/MM" class="form-control" id="ExpiryDate">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SStartDate">
+                                <label for="subjectStartDate">Start Date</label>
+                                <input type="date" data-format="yyyy/dd/MM" class="form-control" id="StartDate">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group" id="SEndDate">
+                                <label for="subjectEndDate">End Date</label>
+                                <input type="date" data-format="yyyy/dd/MM" class="form-control" id="EndDate">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SOutcomeID">
+                                <label for="subjectOutcomeID">Outcome ID</label>
+                                <select class="form-control" id="OutcomeID">
+                                    @foreach (var outcomeid in db.SolutionLookups.Where(u=>u.TypeCode =="OpportunityActionOutcome"))
+                                    { 
+                                    <option value="@outcomeid.Id"> @outcomeid.Code</option>
+                                    }
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group" id="SOutcomeDes">
+                                <label for="subjectOutcomeDes">Outcome Description</label>
+                                <input type="text" class="form-control" id="OutcomeDescription">
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group" id="SAssignedto">
+                                <label for="subjectAssignedto">Assignedto </label>
+                                <input type="text" class="form-control" id="Assignedto">
+                            </div>
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group" id="SCompanyID">
+                                <label for="subjectCompanyID">Company ID</label>
+                                <input type="text" class="form-control" id="CompanyID">
+                                   
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <label for="SLocationID">Location ID</label>
+                                <input type="text" class="form-control" id="LocationId">
+         
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label hidden for="SubjectDate">Create Date</label>
+                                <input type="hidden" value=@DateTime.Now.ToString("yyy-MM-dd") class="form-control" id="CreatedDate">
+                            </div>
+                        </td>
+                        
+                    </tr>
+                    
+                        
+
+                  
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <div class="form-group">
+                                <button type="submit" id="saveSubjectAction" class="btn btn-primary">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                             
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+           </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+       function empty() {
+            $("#SubjectId").val("");
+            $("#ActionID").val("");
+            $("#ActionTypeID").val("");
+            $("#StageActionID").val("");
+            $("#ActionTitle").val("");
+            $("#ActionDescription").val("");
+            $("#ExpiryDate").val("");
+            $("#StartDate").val("");
+            $("#EndDate").val("");
+            $("#OutcomeID").val("");
+            $("#OutcomeDescription").val("");
+            $("#Assignedto").val("");
+            $("#CompanyID").val("");
+            $("#LocationId").val("");
+            $("#CreatedDate").val("");
+
+        }
+
+        $("#saveSubjectAction").click(function () {
+            var subjectAction = {
+                "SubjectId": $("#SubjectId").val(),
+                "ActionId": $("#ActionID").val(),
+                "ActionTypeId": $("#ActionTypeID").val(),
+                "StageActionId": $("#StageActionID").val(),
+                "ActionTitle": $("#ActionTitle").val() ,
+                "ActionDescription": $("#ActionDescription").val()  ,
+                "ExpiryDate": $("#ExpiryDate").val() + 'T00:00:00',
+                "StartDateTime": $("#StartDate").val() + 'T00:00:00',
+                "EndDateTime": $("#EndDate").val() + 'T00:00:00',
+                "OutcomeId": $("#OutcomeID").val(),
+                "OutcomeDescription": $("#OutcomeDescription").val(),
+                "Assignedto": $("#Assignedto").val(),
+                "CompanyId": $("#CompanyID").val(),
+                "LocationId": $("#LocationId").val(),
+                "CreatedDate": $("#CreatedDate").val() + 'T00:00:00',
+
+            };
+       
+            $.ajax({
+                type: "POST",
+                ContentType: "application/json; charset=utf-8",
+                url: "/_sperience/SubjectActions/",
+                data: subjectAction,
+                success: function () {
+                empty();
+                }
+                
+            });
+        });
+        
+    });
+</script>
+
